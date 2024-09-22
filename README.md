@@ -1,79 +1,169 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
-# Getting Started
+# Configuração de Ambiente de Desenvolvimento React Native no Ubuntu
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+Este guia detalha os passos necessários para configurar o ambiente de desenvolvimento **React Native** com **Android Studio** em uma distribuição **Ubuntu**. Ao seguir essas etapas, você estará apto a desenvolver e rodar aplicativos React Native em um dispositivo Android ou emulador.
 
-## Step 1: Start the Metro Server
+---
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## Índice
+1. [Pré-requisitos](#pré-requisitos)
+2. [Instalação do Node.js e npm](#1-instalação-do-nodejs-e-npm)
+3. [Instalação do React Native CLI](#2-instalação-do-react-native-cli)
+4. [Instalação e Configuração do Android Studio](#3-instalação-e-configuração-do-android-studio)
+5. [Configuração do Java para Gradle](#4-configuração-do-java-para-gradle)
+6. [Rodando o Projeto React Native](#5-rodando-o-projeto-react-native)
+7. [Resolução de Problemas Comuns](#6-resolução-de-problemas-comuns)
 
-To start Metro, run the following command from the _root_ of your React Native project:
+---
 
-```bash
-# using npm
-npm start
+## Pré-requisitos
+- **Sistema Operacional:** Ubuntu (ou outra distribuição Linux baseada em Debian)
+- **Espaço em disco:** Aproximadamente 10GB (para o Android Studio, SDKs e dependências)
+- **Memória RAM:** Mínimo de 4GB (8GB recomendado)
 
-# OR using Yarn
-yarn start
-```
+---
 
-## Step 2: Start your Application
+## 1. Instalação do Node.js e npm
+**React Native** depende do **Node.js** e do **npm** para o gerenciamento de pacotes e execução do ambiente de desenvolvimento. Use o **Node Version Manager (nvm)** para instalar a versão correta.
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+### Passos:
+1. Instale o **nvm**:
+   ```bash
+   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
+   ```
 
-### For Android
+2. Atualize o terminal:
+   ```bash
+   export NVM_DIR="$HOME/.nvm"
+   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+   ```
 
-```bash
-# using npm
-npm run android
+3. Instale a versão mais recente do Node.js:
+   ```bash
+   nvm install 20
+   ```
 
-# OR using Yarn
-yarn android
-```
+4. Verifique a instalação:
+   ```bash
+   node -v
+   npm -v
+   ```
 
-### For iOS
+---
 
-```bash
-# using npm
-npm run ios
+## 2. Instalação do React Native CLI
+O **React Native CLI** facilita a criação, execução e gerenciamento de projetos React Native.
 
-# OR using Yarn
-yarn ios
-```
+### Passos:
+1. Instale o CLI do React Native globalmente:
+   ```bash
+   npm install -g react-native-cli
+   ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+---
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+## 3. Instalação e Configuração do Android Studio
+O **Android Studio** fornece o emulador Android e as ferramentas necessárias para compilar aplicativos.
 
-## Step 3: Modifying your App
+### Passos:
+1. Faça o download do [Android Studio](https://developer.android.com/studio) e extraia o arquivo `.tar.gz`.
 
-Now that you have successfully run the app, let's modify it.
+2. No terminal, navegue até o diretório extraído e inicie o Android Studio:
+   ```bash
+   cd android-studio/bin
+   ./studio.sh
+   ```
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+3. Durante a configuração inicial, instale o **SDK Android** e as ferramentas de compilação:
+   - Abra o **SDK Manager** no Android Studio e instale a versão mais recente da **SDK Platform** e **Build Tools**.
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+4. Configure o **ANDROID_HOME** no seu arquivo **.bashrc** (ou **.zshrc**):
+   ```bash
+   export ANDROID_HOME=$HOME/Android/Sdk
+   export PATH=$PATH:$ANDROID_HOME/emulator
+   export PATH=$PATH:$ANDROID_HOME/tools
+   export PATH=$PATH:$ANDROID_HOME/tools/bin
+   export PATH=$PATH:$ANDROID_HOME/platform-tools
+   ```
 
-## Congratulations! :tada:
+5. Aplique as mudanças:
+   ```bash
+   source ~/.bashrc
+   ```
 
-You've successfully run and modified your React Native App. :partying_face:
+---
 
-### Now what?
+## 4. Configuração do Java para Gradle
+O **Gradle**, responsável pela compilação de projetos Android, requer a instalação do **Java**.
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+### Passos:
+1. Instale o **OpenJDK 17**:
+   ```bash
+   sudo apt install openjdk-17-jdk
+   ```
 
-# Troubleshooting
+2. Adicione a variável `JAVA_HOME` ao seu arquivo **.bashrc**:
+   ```bash
+   export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+   ```
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+3. Aplique as mudanças:
+   ```bash
+   source ~/.bashrc
+   ```
 
-# Learn More
+4. Verifique se o Java foi instalado corretamente:
+   ```bash
+   java -version
+   ```
 
-To learn more about React Native, take a look at the following resources:
+---
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+## 5. Rodando o Projeto React Native
+Com o ambiente configurado, você pode agora rodar seu aplicativo React Native.
+
+### Passos:
+1. Navegue até o diretório do projeto:
+   ```bash
+   cd /caminho/do/seu/projeto
+   ```
+
+2. Instale as dependências do projeto:
+   ```bash
+   npm install
+   ```
+
+3. Inicie o servidor de desenvolvimento:
+   ```bash
+   npm start
+   ```
+
+4. Abra o emulador no Android Studio ou conecte um dispositivo Android via USB.
+
+5. Para rodar o aplicativo no emulador ou dispositivo conectado:
+   ```bash
+   npx react-native run-android
+   ```
+
+---
+
+## 6. Resolução de Problemas Comuns
+### Erro `JAVA_HOME`:
+- Verifique se o caminho do Java está corretamente configurado no arquivo **.bashrc** e que o Java 17 está instalado.
+
+### Emulador Android não inicia:
+- Certifique-se de que o SDK do Android e as ferramentas de build estão instalados corretamente.
+- Verifique as variáveis de ambiente exportadas no **.bashrc**.
+
+### Erros relacionados ao Gradle:
+- Verifique se a versão correta do Java está sendo usada com o Gradle.
+- Execute o comando abaixo para garantir que o Gradle esteja utilizando o Java 17:
+   ```bash
+   ./gradlew --version
+   ```
+
+---
+
+## Conclusão
+Agora, com o ambiente de desenvolvimento configurado, você pode começar a desenvolver e rodar seu aplicativo **React Native** com Android Studio. Caso encontre problemas adicionais, consulte a [documentação oficial do React Native](https://reactnative.dev/docs/environment-setup).
+
