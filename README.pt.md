@@ -9,8 +9,8 @@ A aplicação **NeuroVita: IA Inclusiva** utiliza modelos de IA para reescrever 
 ## Informações de Contato
 Se você quiser saber mais sobre o projeto ou entrar em contato comigo, pode me encontrar nos seguintes canais:
 
-- ![Gmail](https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png) **E-mail:** [ian.mgsouza@gmail.com](mailto:seu-email@example.com)
-- ![LinkedIn](https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg) **LinkedIn:** [https://www.linkedin.com/in/ian-miranda-gomes-de-souza-3257a1222/](https://linkedin.com/in/seu-nome)
+- <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" alt="Gmail" width="20"/> **E-mail:** ian.mgsouza@gmail.com
+- <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn" width="20"/> **LinkedIn:** [https://www.linkedin.com/in/ian-miranda-gomes-de-souza-3257a1222/](https://linkedin.com/in/ian-miranda-gomes-de-souza-3257a1222)
 
 Fique à vontade para me contatar para discussões sobre o projeto, colaborações, ou oportunidades profissionais!
 
