@@ -1,169 +1,77 @@
+# Mente Ativa: IA Inclusiva
 
-# Configuração de Ambiente de Desenvolvimento React Native no Ubuntu
+## Resumo da Aplicação
 
-Este guia detalha os passos necessários para configurar o ambiente de desenvolvimento **React Native** com **Android Studio** em uma distribuição **Ubuntu**. Ao seguir essas etapas, você estará apto a desenvolver e rodar aplicativos React Native em um dispositivo Android ou emulador.
+### Objetivo da Aplicação
+- O objetivo principal é ajudar neurodivergentes, especialmente pessoas com TEA (Transtorno do Espectro Autista) e TDAH, a compreender melhor os textos, reescrevendo-os de maneira mais acessível.
+- A aplicação utiliza IA para transformar textos complexos em versões simplificadas, tornando-os mais fáceis de entender e processar.
 
----
+### Interface da Aplicação
+- **Tela Inicial:** Um layout com animação de múltiplos símbolos do infinito, criando um fundo visual dinâmico.
+- **Botão "Iniciar":** Leva o usuário para a tela de inserção e processamento de textos.
+- **Tela de Processamento:** Permite ao usuário inserir um texto, que é enviado à IA para ser processado e simplificado. O resultado é exibido abaixo da caixa de texto.
 
-## Índice
-1. [Pré-requisitos](#pré-requisitos)
-2. [Instalação do Node.js e npm](#1-instalação-do-nodejs-e-npm)
-3. [Instalação do React Native CLI](#2-instalação-do-react-native-cli)
-4. [Instalação e Configuração do Android Studio](#3-instalação-e-configuração-do-android-studio)
-5. [Configuração do Java para Gradle](#4-configuração-do-java-para-gradle)
-6. [Rodando o Projeto React Native](#5-rodando-o-projeto-react-native)
-7. [Resolução de Problemas Comuns](#6-resolução-de-problemas-comuns)
+### Tecnologias Utilizadas
+- **Frontend:** Desenvolvido com **React Native**, usando `react-navigation` para gerenciar as telas e animações para uma melhor experiência do usuário.
+- **Backend:** A aplicação está conectada localmente ao **Ollama**, uma plataforma de IA que roda o modelo **Mistral** para processar e reescrever textos.
+- **Integração com a IA:** Faz uso do Axios para se comunicar com o Ollama e realizar o processamento do texto via API.
 
----
-
-## Pré-requisitos
-- **Sistema Operacional:** Ubuntu (ou outra distribuição Linux baseada em Debian)
-- **Espaço em disco:** Aproximadamente 10GB (para o Android Studio, SDKs e dependências)
-- **Memória RAM:** Mínimo de 4GB (8GB recomendado)
-
----
-
-## 1. Instalação do Node.js e npm
-**React Native** depende do **Node.js** e do **npm** para o gerenciamento de pacotes e execução do ambiente de desenvolvimento. Use o **Node Version Manager (nvm)** para instalar a versão correta.
-
-### Passos:
-1. Instale o **nvm**:
-   ```bash
-   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
-   ```
-
-2. Atualize o terminal:
-   ```bash
-   export NVM_DIR="$HOME/.nvm"
-   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-   ```
-
-3. Instale a versão mais recente do Node.js:
-   ```bash
-   nvm install 20
-   ```
-
-4. Verifique a instalação:
-   ```bash
-   node -v
-   npm -v
-   ```
+### Animações e Design
+- **Fundo Animado:** Imagens em loop contínuo de símbolos do infinito criam uma sensação de movimento suave.
+- **Acessibilidade:** O design segue diretrizes de acessibilidade para neurodivergentes, com cores suaves e interface clara e objetiva.
 
 ---
 
-## 2. Instalação do React Native CLI
-O **React Native CLI** facilita a criação, execução e gerenciamento de projetos React Native.
+## Uso Técnico do Ollama
 
-### Passos:
-1. Instale o CLI do React Native globalmente:
-   ```bash
-   npm install -g react-native-cli
-   ```
+### Configuração do Ollama
+- O Ollama está configurado para rodar em um servidor local via Docker, com uma API que processa textos utilizando o modelo **Mistral**.
+- A comunicação com a API se dá através de requisições HTTP no endpoint `/api/generate`.
 
----
+### Modelo Mistral
+- O modelo **Mistral** é otimizado para reescrever textos no formato de instrução (`[INST]...[/INST]`), gerando respostas claras e acessíveis para os usuários.
+- Esse modelo é especialmente útil para reformular textos complexos de maneira que fiquem mais fáceis de entender para neurodivergentes.
 
-## 3. Instalação e Configuração do Android Studio
-O **Android Studio** fornece o emulador Android e as ferramentas necessárias para compilar aplicativos.
-
-### Passos:
-1. Faça o download do [Android Studio](https://developer.android.com/studio) e extraia o arquivo `.tar.gz`.
-
-2. No terminal, navegue até o diretório extraído e inicie o Android Studio:
-   ```bash
-   cd android-studio/bin
-   ./studio.sh
-   ```
-
-3. Durante a configuração inicial, instale o **SDK Android** e as ferramentas de compilação:
-   - Abra o **SDK Manager** no Android Studio e instale a versão mais recente da **SDK Platform** e **Build Tools**.
-
-4. Configure o **ANDROID_HOME** no seu arquivo **.bashrc** (ou **.zshrc**):
-   ```bash
-   export ANDROID_HOME=$HOME/Android/Sdk
-   export PATH=$PATH:$ANDROID_HOME/emulator
-   export PATH=$PATH:$ANDROID_HOME/tools
-   export PATH=$PATH:$ANDROID_HOME/tools/bin
-   export PATH=$PATH:$ANDROID_HOME/platform-tools
-   ```
-
-5. Aplique as mudanças:
-   ```bash
-   source ~/.bashrc
-   ```
+### Integração com Axios
+- O **Axios** é usado para fazer requisições POST à API do Ollama, enviando o texto e recebendo as respostas da IA de maneira assíncrona.
+- As respostas da IA são processadas em tempo real e exibidas conforme a API responde.
 
 ---
 
-## 4. Configuração do Java para Gradle
-O **Gradle**, responsável pela compilação de projetos Android, requer a instalação do **Java**.
+## Próximos Passos
 
-### Passos:
-1. Instale o **OpenJDK 17**:
-   ```bash
-   sudo apt install openjdk-17-jdk
-   ```
+1. **Melhorar o Front-End:**
+   - Continuar ajustando a interface para garantir uma experiência de usuário mais fluida e visualmente agradável.
+   - Introduzir elementos de design mais modernos e acessíveis para neurodivergentes, como controles de contraste de cor e modos de leitura facilitados.
 
-2. Adicione a variável `JAVA_HOME` ao seu arquivo **.bashrc**:
-   ```bash
-   export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
-   ```
+2. **Implementar Servidor Externo:**
+   - Configurar um servidor no meu computador local, acessível via internet, para que o aplicativo possa ser utilizado de qualquer lugar.
+   - Garantir que o Ollama funcione remotamente e possa lidar com múltiplas requisições.
 
-3. Aplique as mudanças:
-   ```bash
-   source ~/.bashrc
-   ```
+3. **Limitar Respostas da IA:**
+   - Definir padrões de resposta específicos da IA que melhor ajudem neurodivergentes, como resumos, explicações passo a passo e parágrafos curtos e objetivos.
+   - Ajustar o modelo Mistral para gerar saídas mais consistentes e ajustadas às necessidades do público-alvo.
 
-4. Verifique se o Java foi instalado corretamente:
-   ```bash
-   java -version
-   ```
+### Sugestões Futuras (Aceito Sugestões de Todos!)
+- **Integração com Dispositivos Móveis:** Expandir o projeto para incluir funcionalidades de voz, permitindo que os textos sejam lidos em voz alta para o usuário.
+- **Ajustes de Personalização:** Permitir que o usuário configure o nível de simplificação dos textos processados pela IA, para ajustar conforme suas necessidades específicas.
+- **Suporte a Múltiplos Idiomas:** Expandir o suporte para outras línguas, além do português, para ajudar neurodivergentes que falam outras línguas.
 
----
+## Uso Técnico do Ollama
 
-## 5. Rodando o Projeto React Native
-Com o ambiente configurado, você pode agora rodar seu aplicativo React Native.
+### Configuração do Ollama
+- O Ollama foi configurado localmente em um servidor utilizando Docker, rodando a API com o modelo **Mistral**.
+- A aplicação faz requisições HTTP para o endpoint `/api/generate` da API do Ollama.
 
-### Passos:
-1. Navegue até o diretório do projeto:
-   ```bash
-   cd /caminho/do/seu/projeto
-   ```
+### Modelo Mistral
+- O modelo de linguagem **Mistral** processa prompts no formato de instruções (`[INST]...[/INST]`), retornando textos mais simples e compreensíveis.
+- Ideal para reformular textos complexos em formatos mais acessíveis para neurodivergentes.
 
-2. Instale as dependências do projeto:
-   ```bash
-   npm install
-   ```
+### Integração com Axios
+- **Axios** é utilizado para realizar requisições POST para a API do Ollama, enviando o texto a ser processado e recebendo a resposta de forma assíncrona.
 
-3. Inicie o servidor de desenvolvimento:
-   ```bash
-   npm start
-   ```
-
-4. Abra o emulador no Android Studio ou conecte um dispositivo Android via USB.
-
-5. Para rodar o aplicativo no emulador ou dispositivo conectado:
-   ```bash
-   npx react-native run-android
-   ```
+### Processamento em Tempo Real
+- A resposta da API é manipulada de forma incremental, exibindo o texto conforme ele é processado pela IA.
+- O sistema captura pedaços da resposta do Ollama e exibe no aplicativo assim que o processamento é concluído.
 
 ---
-
-## 6. Resolução de Problemas Comuns
-### Erro `JAVA_HOME`:
-- Verifique se o caminho do Java está corretamente configurado no arquivo **.bashrc** e que o Java 17 está instalado.
-
-### Emulador Android não inicia:
-- Certifique-se de que o SDK do Android e as ferramentas de build estão instalados corretamente.
-- Verifique as variáveis de ambiente exportadas no **.bashrc**.
-
-### Erros relacionados ao Gradle:
-- Verifique se a versão correta do Java está sendo usada com o Gradle.
-- Execute o comando abaixo para garantir que o Gradle esteja utilizando o Java 17:
-   ```bash
-   ./gradlew --version
-   ```
-
----
-
-## Conclusão
-Agora, com o ambiente de desenvolvimento configurado, você pode começar a desenvolver e rodar seu aplicativo **React Native** com Android Studio. Caso encontre problemas adicionais, consulte a [documentação oficial do React Native](https://reactnative.dev/docs/environment-setup).
-
