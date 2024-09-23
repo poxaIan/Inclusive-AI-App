@@ -1,9 +1,7 @@
 🇧🇷 [Português](README.pt.md)
 
 ## About Me
-Hello! My name is Ian Miranda Gomes de Souza, and I am in my final semester of **Computer Engineering** at the Federal University of Itajubá (UNIFEI). This project is part of my **Undergraduate Thesis (TCC)**, titled **AI and Accessibility: Developing an Application to Adapt Texts and Interfaces for Neurodivergent Inclusion**. The goal is to create an inclusive application that helps neurodivergent individuals better comprehend texts, utilizing Artificial Intelligence (AI).
-
-This project is based on **React Native**, **Node.js**, **Artificial Intelligence**, and other technologies. I'm always seeking new challenges and opportunities to enhance my skills. This project reflects my passion for combining technology and inclusion to offer solutions that positively impact people's lives.
+I am Ian Miranda Gomes de Souza, a final-year **Computer Engineering** student at **UNIFEI**. My thesis focuses on **AI and Accessibility**, developing an inclusive app to help neurodivergent individuals better understand texts using **Artificial Intelligence**. The project is built using **React Native**, **Node.js**, and other technologies, reflecting my passion for combining technology and inclusion.
 
 ## About the Project
 The **NeuroVita: Inclusive AI** application leverages AI models to rewrite texts in a more accessible way for neurodivergent individuals, particularly those with Autism Spectrum Disorder (ASD) and Attention-Deficit/Hyperactivity Disorder (ADHD). The goal is to simplify textual content, making it easier to understand complex information.

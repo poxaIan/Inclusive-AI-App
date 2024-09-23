@@ -1,7 +1,5 @@
 ## Sobre Mim
-Olá! Meu nome é Ian Miranda Gomes de Souza, estou no último período de **Engenharia de Computação** na Universidade Federal de Itajubá (UNIFEI). Este projeto faz parte do meu **Trabalho de Conclusão de Curso (TCC)** com tema **IA e Acessibilidade: Desenvolvimento de Aplicativo para Adaptar Textos e Interfaces na Inclusão de Neurodivergentes**, cujo objetivo é desenvolver uma aplicação inclusiva para ajudar neurodivergentes a compreender textos com mais facilidade, utilizando Inteligência Artificial (IA).
-
-Esse projeto tem como base o **React Native**, **Node.js**, **Inteligência Artificial**, entre outras tecnologias, e estou sempre em busca de novos desafios e oportunidades para aprimorar minhas habilidades. Este projeto reflete meu interesse em unir tecnologia e inclusão, oferecendo soluções que possam impactar positivamente a vida das pessoas.
+Sou Ian Miranda Gomes de Souza, estudante do último período de **Engenharia de Computação** na **UNIFEI**. Meu TCC aborda **IA e Acessibilidade**, com o desenvolvimento de um aplicativo inclusivo para ajudar neurodivergentes a compreender melhor textos utilizando **Inteligência Artificial**. O projeto é baseado em **React Native**, **Node.js** e outras tecnologias, refletindo meu interesse em unir tecnologia e inclusão.
 
 ## Sobre o Projeto
 A aplicação **NeuroVita: IA Inclusiva** utiliza modelos de IA para reescrever textos de forma mais acessível para neurodivergentes, especialmente pessoas com TEA e TDAH. O objetivo é simplificar o conteúdo textual, facilitando o entendimento de informações complexas.
