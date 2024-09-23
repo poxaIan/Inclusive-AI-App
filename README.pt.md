@@ -16,7 +16,7 @@
     - [3. Instalar e Configurar o Android Studio](#3-instalar-e-configurar-o-android-studio)
     - [4. Configuração do Java para Gradle](#4-configuração-do-java-para-gradle)
     - [5. Rodando o Projeto NeuroVita](#5-rodando-o-projeto-neurovita)
-    [Informações de Contato](#informações-de-contato)
+  -  [Informações de Contato](#informações-de-contato)
 
 
 ### NeuroVita: IA Inclusiva
