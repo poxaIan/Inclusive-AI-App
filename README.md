@@ -1,21 +1,5 @@
 🇧🇷 [Português](README.pt.md)
 
-## About Me
-I am Ian Miranda Gomes de Souza, a final-year **Computer Engineering** student at **UNIFEI**. My thesis focuses on **AI and Accessibility**, developing an inclusive app to help neurodivergent individuals better understand texts using **Artificial Intelligence**. The project is built using **React Native**, **Node.js**, and other technologies, reflecting my passion for combining technology and inclusion.
-
-## About the Project
-The **NeuroVita: Inclusive AI** application leverages AI models to rewrite texts in a more accessible way for neurodivergent individuals, particularly those with Autism Spectrum Disorder (ASD) and Attention-Deficit/Hyperactivity Disorder (ADHD). The goal is to simplify textual content, making it easier to understand complex information.
-
-## Contact Information
-If you'd like to know more about the project or get in touch with me, you can reach me via the following channels:
-
-- <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" alt="Gmail" width="20"/> **E-mail:** ian.mgsouza@gmail.com
-- <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn" width="20"/> **LinkedIn:** [https://www.linkedin.com/in/ian-miranda-gomes-de-souza-3257a1222/](https://linkedin.com/in/ian-miranda-gomes-de-souza-3257a1222)
-
-
-Feel free to contact me to discuss the project, collaborate, or explore professional opportunities!
-
-
 ## Table of Contents
 - [NeuroVita: Inclusive AI](#neurovita-inclusive-ai)
   - [Application Summary](#application-summary)
@@ -34,6 +18,7 @@ Feel free to contact me to discuss the project, collaborate, or explore professi
     - [3. Install and Configure Android Studio](#3-install-and-configure-android-studio)
     - [4. Java Configuration for Gradle](#4-java-configuration-for-gradle)
     - [5. Running the NeuroVita Project](#5-running-the-neurovita-project)
+    [Contact Information](#contact-information)
 
 ### NeuroVita: Inclusive AI
 
@@ -185,3 +170,11 @@ npm start
 npx react-native run-android
 ```
 
+## Contact Information
+If you'd like to know more about the project or get in touch with me, you can reach me via the following channels:
+
+- <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" alt="Gmail" width="20"/> **E-mail:** ian.mgsouza@gmail.com
+- <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn" width="20"/> **LinkedIn:** [https://www.linkedin.com/in/ian-miranda-gomes-de-souza-3257a1222/](https://linkedin.com/in/ian-miranda-gomes-de-souza-3257a1222)
+
+
+Feel free to contact me to discuss the project, collaborate, or explore professional opportunities!

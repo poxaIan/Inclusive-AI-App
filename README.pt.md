@@ -1,18 +1,3 @@
-## Sobre Mim
-Sou Ian Miranda Gomes de Souza, estudante do último período de **Engenharia de Computação** na **UNIFEI**. Meu TCC aborda **IA e Acessibilidade**, com o desenvolvimento de um aplicativo inclusivo para ajudar neurodivergentes a compreender melhor textos utilizando **Inteligência Artificial**. O projeto é baseado em **React Native**, **Node.js** e outras tecnologias, refletindo meu interesse em unir tecnologia e inclusão.
-
-## Sobre o Projeto
-A aplicação **NeuroVita: IA Inclusiva** utiliza modelos de IA para reescrever textos de forma mais acessível para neurodivergentes, especialmente pessoas com TEA e TDAH. O objetivo é simplificar o conteúdo textual, facilitando o entendimento de informações complexas.
-
-## Informações de Contato
-Se você quiser saber mais sobre o projeto ou entrar em contato comigo, pode me encontrar nos seguintes canais:
-
-- <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" alt="Gmail" width="20"/> **E-mail:** ian.mgsouza@gmail.com
-- <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn" width="20"/> **LinkedIn:** [https://www.linkedin.com/in/ian-miranda-gomes-de-souza-3257a1222/](https://linkedin.com/in/ian-miranda-gomes-de-souza-3257a1222)
-
-Fique à vontade para me contatar para discussões sobre o projeto, colaborações, ou oportunidades profissionais!
-
-
 ## Índice
 - [NeuroVita: IA Inclusiva](#neurovita-ia-inclusiva)
   - [Resumo da Aplicação](#resumo-da-aplicação)
@@ -31,6 +16,7 @@ Fique à vontade para me contatar para discussões sobre o projeto, colaboraçõ
     - [3. Instalar e Configurar o Android Studio](#3-instalar-e-configurar-o-android-studio)
     - [4. Configuração do Java para Gradle](#4-configuração-do-java-para-gradle)
     - [5. Rodando o Projeto NeuroVita](#5-rodando-o-projeto-neurovita)
+    [Informações de Contato](#informações-de-contato)
 
 
 ### NeuroVita: IA Inclusiva
@@ -181,5 +167,13 @@ npm start
 ```bash
 npx react-native run-android
 ```
+
+## Informações de Contato
+Se você quiser saber mais sobre o projeto ou entrar em contato comigo, pode me encontrar nos seguintes canais:
+
+- <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" alt="Gmail" width="20"/> **E-mail:** ian.mgsouza@gmail.com
+- <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn" width="20"/> **LinkedIn:** [https://www.linkedin.com/in/ian-miranda-gomes-de-souza-3257a1222/](https://linkedin.com/in/ian-miranda-gomes-de-souza-3257a1222)
+
+Fique à vontade para me contatar para discussões sobre o projeto, colaborações, ou oportunidades profissionais!
 
 
