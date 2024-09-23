@@ -1,5 +1,24 @@
 🇧🇷 [Português](README.pt.md)
 
+## Table of Contents
+- [NeuroVita: Inclusive AI](#neurovita-inclusive-ai)
+  - [Application Summary](#application-summary)
+    - [Application Goal](#application-goal)
+    - [Application Interface](#application-interface)
+    - [Technologies Used](#technologies-used)
+    - [Animations and Design](#animations-and-design)
+  - [Technical Use of Ollama](#technical-use-of-ollama)
+    - [Ollama Configuration](#ollama-configuration)
+    - [Mistral Model](#mistral-model)
+    - [Axios Integration](#axios-integration)
+    - [Real-Time Processing](#real-time-processing)
+  - [React Native Environment Setup](#react-native-environment-setup)
+    - [1. Install Node.js and npm](#1-install-nodejs-and-npm)
+    - [2. Install the React Native CLI](#2-install-the-react-native-cli)
+    - [3. Install and Configure Android Studio](#3-install-and-configure-android-studio)
+    - [4. Java Configuration for Gradle](#4-java-configuration-for-gradle)
+    - [5. Running the NeuroVita Project](#5-running-the-neurovita-project)
+
 ### NeuroVita: Inclusive AI
 
 ## Application Summary
