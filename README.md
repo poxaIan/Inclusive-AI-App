@@ -1,4 +1,4 @@
-# Mente Ativa: IA Inclusiva
+# NeuroVita: IA Inclusiva
 
 ## Resumo da Aplicação
 
