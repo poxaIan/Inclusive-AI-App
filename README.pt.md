@@ -1,3 +1,40 @@
+## Sobre Mim
+Olá! Meu nome é Ian Miranda Gomes de Souza, estou no último período de **Engenharia de Computação** na Universidade Federal de Itajubá (UNIFEI). Este projeto faz parte do meu **Trabalho de Conclusão de Curso (TCC)** com tema **IA e Acessibilidade: Desenvolvimento de Aplicativo para Adaptar Textos e Interfaces na Inclusão de Neurodivergentes**, cujo objetivo é desenvolver uma aplicação inclusiva para ajudar neurodivergentes a compreender textos com mais facilidade, utilizando Inteligência Artificial (IA).
+
+Esse projeto tem como base o **React Native**, **Node.js**, **Inteligência Artificial**, entre outras tecnologias, e estou sempre em busca de novos desafios e oportunidades para aprimorar minhas habilidades. Este projeto reflete meu interesse em unir tecnologia e inclusão, oferecendo soluções que possam impactar positivamente a vida das pessoas.
+
+## Sobre o Projeto
+A aplicação **NeuroVita: IA Inclusiva** utiliza modelos de IA para reescrever textos de forma mais acessível para neurodivergentes, especialmente pessoas com TEA e TDAH. O objetivo é simplificar o conteúdo textual, facilitando o entendimento de informações complexas.
+
+## Informações de Contato
+Se você quiser saber mais sobre o projeto ou entrar em contato comigo, pode me encontrar nos seguintes canais:
+
+- ![Gmail](https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png) **E-mail:** [ian.mgsouza@gmail.com](mailto:seu-email@example.com)
+- ![LinkedIn](https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg) **LinkedIn:** [https://www.linkedin.com/in/ian-miranda-gomes-de-souza-3257a1222/](https://linkedin.com/in/seu-nome)
+
+Fique à vontade para me contatar para discussões sobre o projeto, colaborações, ou oportunidades profissionais!
+
+
+## Índice
+- [NeuroVita: IA Inclusiva](#neurovita-ia-inclusiva)
+  - [Resumo da Aplicação](#resumo-da-aplicação)
+    - [Objetivo da Aplicação](#objetivo-da-aplicação)
+    - [Interface da Aplicação](#interface-da-aplicação)
+    - [Tecnologias Utilizadas](#tecnologias-utilizadas)
+    - [Animações e Design](#animações-e-design)
+  - [Uso Técnico do Ollama](#uso-técnico-do-ollama)
+    - [Configuração do Ollama](#configuração-do-ollama)
+    - [Modelo Mistral](#modelo-mistral)
+    - [Integração com Axios](#integração-com-axios)
+    - [Processamento em Tempo Real](#processamento-em-tempo-real)
+  - [Configuração do Ambiente React Native](#configuração-do-ambiente-react-native)
+    - [1. Instalar o Node.js e npm](#1-instalar-o-nodejs-e-npm)
+    - [2. Instalar o React Native CLI](#2-instalar-o-react-native-cli)
+    - [3. Instalar e Configurar o Android Studio](#3-instalar-e-configurar-o-android-studio)
+    - [4. Configuração do Java para Gradle](#4-configuração-do-java-para-gradle)
+    - [5. Rodando o Projeto NeuroVita](#5-rodando-o-projeto-neurovita)
+
+
 ### NeuroVita: IA Inclusiva
 
 ## Resumo da Aplicação
