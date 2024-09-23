@@ -11,9 +11,8 @@ The **NeuroVita: Inclusive AI** application leverages AI models to rewrite texts
 ## Contact Information
 If you'd like to know more about the project or get in touch with me, you can reach me via the following channels:
 
-- ![Gmail](https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png) **E-mail:** [ian.mgsouza@gmail.com](mailto:seu-email@example.com)
-- ![LinkedIn](https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg) **LinkedIn:** [https://www.linkedin.com/in/ian-miranda-gomes-de-souza-3257a1222/](https://linkedin.com/in/seu-nome)
-
+- <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" alt="Gmail" width="20"/> **E-mail:** [ian.mgsouza@gmail.com]
+- <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn" width="20"/> **LinkedIn:** [https://www.linkedin.com/in/ian-miranda-gomes-de-souza-3257a1222/](https://linkedin.com/in/ian-miranda-gomes-de-souza-3257a1222)
 Feel free to contact me to discuss the project, collaborate, or explore professional opportunities!
 
 
