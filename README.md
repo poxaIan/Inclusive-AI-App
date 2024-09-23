@@ -7,7 +7,7 @@
 - A aplicação utiliza IA para transformar textos complexos em versões simplificadas, tornando-os mais fáceis de entender e processar.
 
 ### Interface da Aplicação
-- **Tela Inicial:** Um layout com animação de múltiplos símbolos do infinito, criando um fundo visual dinâmico.
+- **Tela Inicial:** Um layout com animação de múltiplos símbolos do infinito, simbolo criado pela comunidade de neurodivergentes, criando um fundo visual bonito e dinâmico.
 - **Botão "Iniciar":** Leva o usuário para a tela de inserção e processamento de textos.
 - **Tela de Processamento:** Permite ao usuário inserir um texto, que é enviado à IA para ser processado e simplificado. O resultado é exibido abaixo da caixa de texto.
 
@@ -36,42 +36,113 @@
 - O **Axios** é usado para fazer requisições POST à API do Ollama, enviando o texto e recebendo as respostas da IA de maneira assíncrona.
 - As respostas da IA são processadas em tempo real e exibidas conforme a API responde.
 
----
-
-## Próximos Passos
-
-1. **Melhorar o Front-End:**
-   - Continuar ajustando a interface para garantir uma experiência de usuário mais fluida e visualmente agradável.
-   - Introduzir elementos de design mais modernos e acessíveis para neurodivergentes, como controles de contraste de cor e modos de leitura facilitados.
-
-2. **Implementar Servidor Externo:**
-   - Configurar um servidor no meu computador local, acessível via internet, para que o aplicativo possa ser utilizado de qualquer lugar.
-   - Garantir que o Ollama funcione remotamente e possa lidar com múltiplas requisições.
-
-3. **Limitar Respostas da IA:**
-   - Definir padrões de resposta específicos da IA que melhor ajudem neurodivergentes, como resumos, explicações passo a passo e parágrafos curtos e objetivos.
-   - Ajustar o modelo Mistral para gerar saídas mais consistentes e ajustadas às necessidades do público-alvo.
-
-### Sugestões Futuras (Aceito Sugestões de Todos!)
-- **Integração com Dispositivos Móveis:** Expandir o projeto para incluir funcionalidades de voz, permitindo que os textos sejam lidos em voz alta para o usuário.
-- **Ajustes de Personalização:** Permitir que o usuário configure o nível de simplificação dos textos processados pela IA, para ajustar conforme suas necessidades específicas.
-- **Suporte a Múltiplos Idiomas:** Expandir o suporte para outras línguas, além do português, para ajudar neurodivergentes que falam outras línguas.
-
-## Uso Técnico do Ollama
-
-### Configuração do Ollama
-- O Ollama foi configurado localmente em um servidor utilizando Docker, rodando a API com o modelo **Mistral**.
-- A aplicação faz requisições HTTP para o endpoint `/api/generate` da API do Ollama.
-
-### Modelo Mistral
-- O modelo de linguagem **Mistral** processa prompts no formato de instruções (`[INST]...[/INST]`), retornando textos mais simples e compreensíveis.
-- Ideal para reformular textos complexos em formatos mais acessíveis para neurodivergentes.
-
-### Integração com Axios
-- **Axios** é utilizado para realizar requisições POST para a API do Ollama, enviando o texto a ser processado e recebendo a resposta de forma assíncrona.
-
 ### Processamento em Tempo Real
 - A resposta da API é manipulada de forma incremental, exibindo o texto conforme ele é processado pela IA.
 - O sistema captura pedaços da resposta do Ollama e exibe no aplicativo assim que o processamento é concluído.
 
----
+
+# Configuração do Ambiente React Native
+
+### 1. Instalar o Node.js e npm
+
+1. Instale o **Node Version Manager (nvm)**:
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
+```
+
+2. Atualize o terminal:
+```bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+```
+
+3. Instale a versão mais recente do Node.js:
+```bash
+nvm install 20
+```
+
+4. Verifique a instalação:
+```bash
+node -v
+npm -v
+```
+
+### 2. Instalar o React Native CLI
+
+1. Instale o CLI do React Native globalmente:
+```bash
+npm install -g react-native-cli
+```
+
+### 3. Instalar e Configurar o Android Studio
+
+1. Faça o download do Android Studio e extraia o arquivo .tar.gz.
+
+2. Navegue até o diretório extraído e inicie o Android Studio:
+```bash
+cd android-studio/bin
+./studio.sh
+```
+
+3. Durante a configuração inicial, instale o SDK Android e as ferramentas de compilação:
+   - Abra o SDK Manager no Android Studio e instale a versão mais recente da SDK Platform e Build Tools.
+
+4. Configure o ANDROID_HOME no seu arquivo `.bashrc` (ou `.zshrc`):
+```bash
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+```
+
+5. Aplique as mudanças:
+```bash
+source ~/.bashrc
+```
+
+### 4. Configuração do Java para Gradle
+
+1. Instale o OpenJDK 17:
+```bash
+sudo apt install openjdk-17-jdk
+```
+
+2. Adicione a variável JAVA_HOME ao seu arquivo `.bashrc`:
+```bash
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+```
+
+3. Aplique as mudanças:
+```bash
+source ~/.bashrc
+```
+
+4. Verifique se o Java foi instalado corretamente:
+```bash
+java -version
+```
+
+### 5. Rodando o Projeto NeuroVita
+
+1. Navegue até o diretório do projeto:
+```bash
+cd /caminho/do/projeto
+```
+
+2. Instale as dependências do projeto:
+```bash
+npm install
+```
+
+3. Inicie o servidor de desenvolvimento:
+```bash
+npm start
+```
+
+4. Abra o emulador no Android Studio ou conecte um dispositivo Android via USB.
+
+5. Para rodar o aplicativo no emulador ou dispositivo conectado:
+```bash
+npx react-native run-android
+```
