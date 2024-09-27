@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, TextInput, Button, Text, StyleSheet, ScrollView, Image, Dimensions } from 'react-native';
 import { RouteProp } from '@react-navigation/native'; // Importa RouteProp para definir o tipo de rota
 import { RootStackParamList } from '../services/types'; // Importa os tipos definidos
 import { processWithOllama } from '../services/OllamaService'; // Ajuste o caminho conforme necessário
-
 
 type ProcessScreenRouteProp = RouteProp<RootStackParamList, 'ProcessScreen'>; // Define o tipo de rota para a tela
 
 type Props = {
   route: ProcessScreenRouteProp;
 };
+
+const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
 
 const ProcessScreen: React.FC<Props> = ({ route }) => {
   const { outputType, language } = route.params;  // Recebe os parâmetros da tela anterior
@@ -46,51 +48,103 @@ const ProcessScreen: React.FC<Props> = ({ route }) => {
     setOutputText((prevText) => prevText + partialResponse);
   };
 
+  const renderImages = () => {
+    const rows = [];
+    for (let i = 0; i < 7; i++) { // Cria 6 linhas
+      rows.push(
+        <View key={i} style={styles.imageRow}>
+          {Array.from({ length: 3 }).map((_, index) => ( // Cria 3 colunas por linha
+            <Image
+              key={index}
+              source={require('../assets/infinite_symbol.png')}
+              style={styles.smallImage}
+            />
+          ))}
+        </View>
+      );
+    }
+    return rows;
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Insira o texto para processar:</Text>
-      <TextInput
-        style={styles.input}
-        multiline
-        placeholder="Cole seu texto aqui"
-        value={inputText}
-        onChangeText={setInputText}
-      />
+      <View style={styles.background}>{renderImages()}</View>
+      <View style={styles.overlay}>
+        <Text style={styles.title}>Insira o texto para processar:</Text>
+        <TextInput
+          style={styles.input}
+          multiline
+          placeholder="Cole seu texto aqui"
+          value={inputText}
+          onChangeText={setInputText}
+        />
 
-      <Button title="Processar Texto" onPress={handleProcessText} />
+        <Button title="Processar Texto" onPress={handleProcessText} />
 
-      {outputText && (
-        <ScrollView style={styles.outputContainer}>
-          <Text style={styles.outputTitle}>Saída da IA:</Text>
-          <Text style={styles.output}>{outputText}</Text>
-        </ScrollView>
-      )}
+        {outputText && (
+          <ScrollView style={styles.outputContainer}>
+            <Text style={styles.outputTitle}>Saída da IA:</Text>
+            <Text style={styles.output}>{outputText}</Text>
+          </ScrollView>
+        )}
+      </View>
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
     flex: 1,
-    backgroundColor: '#f0f0f0',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+  },
+  background: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: screenWidth,
+    height: screenHeight,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imageRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  smallImage: {
+    width: 120,
+    height: 120,
+    margin: 5,
+    opacity: 0.5,  // Define a opacidade das imagens
+  },
+  overlay: {
+    width: '80%',
+    padding: 20,
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',  // Leve opacidade para melhorar a legibilidade
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
+    textAlign: 'center',
   },
   input: {
     width: '100%',
     minHeight: 150,
+    maxHeight: 300,  // Definindo uma altura máxima para a caixa de texto
     padding: 10,
     borderColor: '#ccc',
     borderWidth: 1,
     borderRadius: 5,
     marginBottom: 20,
     backgroundColor: '#fff',
+    textAlignVertical: 'top',  // Faz o texto começar de cima
   },
   outputContainer: {
     marginTop: 20,
