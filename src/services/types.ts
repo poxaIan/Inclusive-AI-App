@@ -1,6 +1,6 @@
 // src/services/types.ts
-export type StackParamList = {
-  Home: undefined;
-  OutraTela: undefined;
-  Process: undefined;  // Adicionando a rota "Process"
+export type RootStackParamList = {
+  HomeScreen: undefined;
+  SelectionScreen: undefined;
+  ProcessScreen: { outputType: string; language: string };
 };

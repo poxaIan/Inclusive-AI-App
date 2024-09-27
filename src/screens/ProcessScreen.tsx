@@ -1,21 +1,25 @@
-//ProcessScreen.tsx
-
 import React, { useState } from 'react';
 import { View, TextInput, Button, Text, StyleSheet, ScrollView } from 'react-native';
-import { processWithOllama } from '../services/OllamaService';
-import { Picker } from '@react-native-picker/picker';
+import { RouteProp } from '@react-navigation/native'; // Importa RouteProp para definir o tipo de rota
+import { RootStackParamList } from '../services/types'; // Importa os tipos definidos
+import { processWithOllama } from '../services/OllamaService'; // Ajuste o caminho conforme necessário
 
-const ProcessScreen = () => {
+
+type ProcessScreenRouteProp = RouteProp<RootStackParamList, 'ProcessScreen'>; // Define o tipo de rota para a tela
+
+type Props = {
+  route: ProcessScreenRouteProp;
+};
+
+const ProcessScreen: React.FC<Props> = ({ route }) => {
+  const { outputType, language } = route.params;  // Recebe os parâmetros da tela anterior
   const [inputText, setInputText] = useState('');
   const [outputText, setOutputText] = useState('');
-  const [outputType, setOutputType] = useState('tdah');  // Padrão de saída
-  const [language, setLanguage] = useState('pt');  // Idioma
 
   const handleProcessText = async () => {
     try {
       console.log("Enviando o texto para o Ollama...");
 
-      // Define a mensagem personalizada com base no tipo selecionado (TDAH ou TEA)
       let prompt = '';
 
       if (outputType === 'tdah') {
@@ -29,7 +33,7 @@ const ProcessScreen = () => {
       // Zera a resposta acumulada
       setOutputText('');
 
-      // Envia o texto com a mensagem personalizada para a IA, com tipo e idioma escolhidos
+      // Envia o texto com a mensagem personalizada para a IA
       const response = await processWithOllama(prompt, outputType, language, handlePartialResponse);
       console.log("Resposta completa recebida: ", response);
     } catch (error) {
@@ -38,7 +42,6 @@ const ProcessScreen = () => {
     }
   };
 
-  // Função para tratar cada fragmento de resposta
   const handlePartialResponse = (partialResponse: string) => {
     setOutputText((prevText) => prevText + partialResponse);
   };
@@ -53,24 +56,6 @@ const ProcessScreen = () => {
         value={inputText}
         onChangeText={setInputText}
       />
-      
-      <Text>Escolha o padrão de saída:</Text>
-      <Picker
-        selectedValue={outputType}
-        style={styles.picker}
-        onValueChange={(itemValue) => setOutputType(itemValue)}>
-        <Picker.Item label="TDAH" value="tdah" />
-        <Picker.Item label="TEA" value="tea" />
-      </Picker>
-
-      <Text>Escolha o idioma:</Text>
-      <Picker
-        selectedValue={language}
-        style={styles.picker}
-        onValueChange={(itemValue) => setLanguage(itemValue)}>
-        <Picker.Item label="Português" value="pt" />
-        <Picker.Item label="Inglês" value="en" />
-      </Picker>
 
       <Button title="Processar Texto" onPress={handleProcessText} />
 
@@ -106,11 +91,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 20,
     backgroundColor: '#fff',
-  },
-  picker: {
-    height: 50,
-    width: '100%',
-    marginBottom: 20,
   },
   outputContainer: {
     marginTop: 20,

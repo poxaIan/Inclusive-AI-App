@@ -1,20 +1,20 @@
-// src/screens/HomeScreen.tsx
 import React, { useRef, useEffect } from 'react';
 import { View, Text, StyleSheet, Image, Animated, Dimensions, Easing, TouchableOpacity } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { StackParamList } from '../services/types';
+import { RootStackParamList } from '../services/types';  // Importa os tipos definidos
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 const animatedTime = 64000;
 
-type HomeScreenNavigationProp = NativeStackNavigationProp<StackParamList, 'Home'>;
+// Define o tipo de navegação esperado para essa tela
+type HomeScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'HomeScreen'>;
 
 type Props = {
   navigation: HomeScreenNavigationProp;
 };
 
-const HomeScreen = ({ navigation }: Props) => {
+const HomeScreen: React.FC<Props> = ({ navigation }) => {
   const translateX = useRef(new Animated.Value(0)).current;
   const translateY = useRef(new Animated.Value(0)).current;
 
@@ -67,7 +67,7 @@ const HomeScreen = ({ navigation }: Props) => {
       <View style={styles.overlay}>
         <Text style={styles.title}>NeuroVita</Text>
         <Text style={styles.subtitle}>IA Inclusiva</Text>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Process')}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SelectionScreen')}>
           <Text style={styles.buttonText}>Iniciar</Text>
         </TouchableOpacity>
       </View>
