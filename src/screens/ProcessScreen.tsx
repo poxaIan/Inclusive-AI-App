@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Text, StyleSheet, ScrollView, Image, Dimensions } from 'react-native';
-import { RouteProp } from '@react-navigation/native'; // Importa RouteProp para definir o tipo de rota
-import { RootStackParamList } from '../services/types'; // Importa os tipos definidos
-import { processWithOllama } from '../services/OllamaService'; // Ajuste o caminho conforme necessário
+import { RouteProp } from '@react-navigation/native'; 
+import { RootStackParamList } from '../services/types'; 
+import { processWithOllama } from '../services/OllamaService'; 
 
-type ProcessScreenRouteProp = RouteProp<RootStackParamList, 'ProcessScreen'>; // Define o tipo de rota para a tela
+type ProcessScreenRouteProp = RouteProp<RootStackParamList, 'ProcessScreen'>;
 
 type Props = {
   route: ProcessScreenRouteProp;
@@ -14,9 +14,14 @@ const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
 const ProcessScreen: React.FC<Props> = ({ route }) => {
-  const { outputType, language } = route.params;  // Recebe os parâmetros da tela anterior
+  const { outputType, language } = route.params;
   const [inputText, setInputText] = useState('');
   const [outputText, setOutputText] = useState('');
+
+  // Função para traduzir o código do idioma para uma string legível
+  const getLanguageName = (lang: string) => {
+    return lang === 'pt' ? 'português' : 'inglês';
+  };
 
   const handleProcessText = async () => {
     try {
@@ -25,17 +30,15 @@ const ProcessScreen: React.FC<Props> = ({ route }) => {
       let prompt = '';
 
       if (outputType === 'tdah') {
-        prompt = `Por favor, resuma o seguinte texto em uma lista organizada, destacando os pontos principais em tópicos curtos e fáceis de entender. Cada tópico deve conter uma ideia clara e objetiva. Utilize uma estrutura de tópicos com frases curtas, que ajudem a manter o foco do leitor. \n\n Texto: ${inputText}`;
+        prompt = `Por favor, em ${getLanguageName(language)}, resuma o seguinte texto em uma lista organizada, destacando os pontos principais em tópicos curtos e fáceis de entender. Cada tópico deve conter uma ideia clara e objetiva. Utilize uma estrutura de tópicos com frases curtas, que ajudem a manter o foco do leitor. \n\n Texto: ${inputText}`;
       } else if (outputType === 'tea') {
-        prompt = `Explique o seguinte texto de forma simples e clara. Organize as ideias em tópicos, usando uma linguagem direta e precisa. Evite metáforas, ironias ou ambiguidades. Certifique-se de que cada frase contenha apenas uma ideia, para facilitar a compreensão. \n\n Texto: ${inputText}`;
+        prompt = `Explique, em ${getLanguageName(language)}, o seguinte texto de forma simples e clara. Organize as ideias usando uma linguagem direta e precisa. Evite metáforas, ironias ou ambiguidades. Certifique-se de que cada frase contenha apenas uma ideia, para facilitar a compreensão. \n\n Texto: ${inputText}`;
       }
 
       console.log("Prompt: ", prompt);
 
-      // Zera a resposta acumulada
       setOutputText('');
 
-      // Envia o texto com a mensagem personalizada para a IA
       const response = await processWithOllama(prompt, outputType, language, handlePartialResponse);
       console.log("Resposta completa recebida: ", response);
     } catch (error) {
@@ -50,10 +53,10 @@ const ProcessScreen: React.FC<Props> = ({ route }) => {
 
   const renderImages = () => {
     const rows = [];
-    for (let i = 0; i < 7; i++) { // Cria 6 linhas
+    for (let i = 0; i < 7; i++) { 
       rows.push(
         <View key={i} style={styles.imageRow}>
-          {Array.from({ length: 3 }).map((_, index) => ( // Cria 3 colunas por linha
+          {Array.from({ length: 3 }).map((_, index) => (
             <Image
               key={index}
               source={require('../assets/infinite_symbol.png')}
@@ -118,12 +121,12 @@ const styles = StyleSheet.create({
     width: 120,
     height: 120,
     margin: 5,
-    opacity: 0.5,  // Define a opacidade das imagens
+    opacity: 0.5,
   },
   overlay: {
     width: '80%',
     padding: 20,
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',  // Leve opacidade para melhorar a legibilidade
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
@@ -137,14 +140,14 @@ const styles = StyleSheet.create({
   input: {
     width: '100%',
     minHeight: 150,
-    maxHeight: 300,  // Definindo uma altura máxima para a caixa de texto
+    maxHeight: 300,
     padding: 10,
     borderColor: '#ccc',
     borderWidth: 1,
     borderRadius: 5,
     marginBottom: 20,
     backgroundColor: '#fff',
-    textAlignVertical: 'top',  // Faz o texto começar de cima
+    textAlignVertical: 'top',
   },
   outputContainer: {
     marginTop: 20,
