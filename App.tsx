@@ -4,21 +4,19 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './src/screens/HomeScreen';
 import SelectionScreen from './src/screens/SelectionScreen';
 import ProcessScreen from './src/screens/ProcessScreen';
-import { RootStackParamList } from './src/services/types'; // Importa os tipos
+import OutputScreen from './src/screens/OutputScreen'; 
+import { RootStackParamList } from './src/services/types';
 
-const Stack = createStackNavigator<RootStackParamList>(); // Usa os tipos corretamente
+const Stack = createStackNavigator<RootStackParamList>();
 
 const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="HomeScreen">
-        <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ title: 'Home' }} />
-        <Stack.Screen name="SelectionScreen" component={SelectionScreen} options={{ title: 'Seleção' }} />
-        <Stack.Screen
-          name="ProcessScreen"
-          component={ProcessScreen}
-          options={{ title: 'Processamento' }}
-        />
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
+        <Stack.Screen name="SelectionScreen" component={SelectionScreen} />
+        <Stack.Screen name="ProcessScreen" component={ProcessScreen} />
+        <Stack.Screen name="OutputScreen" component={OutputScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

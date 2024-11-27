@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Text, StyleSheet, ScrollView, Image, Dimensions } from 'react-native';
-import { RouteProp } from '@react-navigation/native'; 
-import { RootStackParamList } from '../services/types'; 
-import { processWithOllama } from '../services/OllamaService'; 
+import { RouteProp, useNavigation } from '@react-navigation/native';
+import { RootStackParamList } from '../services/types';
+import { processWithOllama } from '../services/OllamaService';
 
 type ProcessScreenRouteProp = RouteProp<RootStackParamList, 'ProcessScreen'>;
+
 
 type Props = {
   route: ProcessScreenRouteProp;
@@ -17,6 +18,7 @@ const ProcessScreen: React.FC<Props> = ({ route }) => {
   const { outputType, language } = route.params;
   const [inputText, setInputText] = useState('');
   const [outputText, setOutputText] = useState('');
+  const navigation = useNavigation(); // Para navegação entre telas
 
   // Função para traduzir o código do idioma para uma string legível
   const getLanguageName = (lang: string) => {
@@ -25,35 +27,45 @@ const ProcessScreen: React.FC<Props> = ({ route }) => {
 
   const handleProcessText = async () => {
     try {
+      if (!inputText.trim()) {
+        setOutputText("Por favor, insira um texto para processar.");
+        return;
+      }
+  
       console.log("Enviando o texto para o Ollama...");
-
+  
       let prompt = '';
-
+  
       if (outputType === 'tdah') {
         prompt = `Por favor, em ${getLanguageName(language)}, resuma o seguinte texto em uma lista organizada, destacando os pontos principais em tópicos curtos e fáceis de entender. Cada tópico deve conter uma ideia clara e objetiva. Utilize uma estrutura de tópicos com frases curtas, que ajudem a manter o foco do leitor. \n\n Texto: ${inputText}`;
       } else if (outputType === 'tea') {
         prompt = `Explique, em ${getLanguageName(language)}, o seguinte texto de forma simples e clara. Organize as ideias usando uma linguagem direta e precisa. Evite metáforas, ironias ou ambiguidades. Certifique-se de que cada frase contenha apenas uma ideia, para facilitar a compreensão. \n\n Texto: ${inputText}`;
       }
-
+  
       console.log("Prompt: ", prompt);
-
-      setOutputText('');
-
-      const response = await processWithOllama(prompt, outputType, language, handlePartialResponse);
-      console.log("Resposta completa recebida: ", response);
+  
+      setOutputText("Processando...");
+  
+      // Processa o texto usando a função com a IA
+      const response = await processWithOllama(prompt, outputType, language);
+      console.log("Resposta da API:", response);
+  
+      if (typeof response === 'string') {
+        setOutputText(response); // Atualiza o estado com a resposta da API
+        navigation.navigate('OutputScreen', { outputText: response }); // Navega para a tela de saída
+      } else {
+        console.error("Erro: Resposta não é uma string.");
+        setOutputText("Erro ao processar o texto.");
+      }
     } catch (error) {
       console.error("Erro ao processar o texto:", error);
       setOutputText("Erro ao processar o texto.");
     }
   };
-
-  const handlePartialResponse = (partialResponse: string) => {
-    setOutputText((prevText) => prevText + partialResponse);
-  };
-
+  
   const renderImages = () => {
     const rows = [];
-    for (let i = 0; i < 7; i++) { 
+    for (let i = 0; i < 7; i++) {
       rows.push(
         <View key={i} style={styles.imageRow}>
           {Array.from({ length: 3 }).map((_, index) => (
@@ -84,12 +96,6 @@ const ProcessScreen: React.FC<Props> = ({ route }) => {
 
         <Button title="Processar Texto" onPress={handleProcessText} />
 
-        {outputText && (
-          <ScrollView style={styles.outputContainer}>
-            <Text style={styles.outputTitle}>Saída da IA:</Text>
-            <Text style={styles.output}>{outputText}</Text>
-          </ScrollView>
-        )}
       </View>
     </ScrollView>
   );
@@ -148,23 +154,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     backgroundColor: '#fff',
     textAlignVertical: 'top',
-  },
-  outputContainer: {
-    marginTop: 20,
-    padding: 20,
-    backgroundColor: '#f4f4f4',
-    borderRadius: 5,
-    width: '100%',
-    maxHeight: 200,
-  },
-  outputTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  output: {
-    fontSize: 16,
-    color: '#333',
   },
 });
 
