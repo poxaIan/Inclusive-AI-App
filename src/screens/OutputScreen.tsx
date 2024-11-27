@@ -14,8 +14,8 @@ const OutputScreen: React.FC<Props> = ({ route }) => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Saída da IA:</Text>
-      <Text style={styles.output}>{outputText}</Text>
+      <Text style={styles.title}>Texto Processado</Text>
+      <Text style={styles.text}>{outputText}</Text>
     </ScrollView>
   );
 };
@@ -24,16 +24,16 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
     alignItems: 'center',
-    justifyContent: 'center',
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
+    textAlign: 'center',
   },
-  output: {
+  text: {
     fontSize: 16,
-    color: '#333',
+    textAlign: 'justify',
   },
 });
 
