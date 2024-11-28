@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, Button, TextInput, StyleSheet, TouchableOpacity, Dimensions, Image } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../services/types';
-import { processLink } from '../services/processLink'; 
+import { processLink } from '../services/processLink';
+import { handleProcessText } from '../services/TextProcessingService';
 
 type SelectionScreenNavigationProp = StackNavigationProp<RootStackParamList, 'SelectionScreen'>;
 
@@ -18,6 +19,7 @@ const SelectionScreen: React.FC<Props> = ({ navigation }) => {
   const [language, setLanguage] = useState('pt');
   const [isLinkMode, setIsLinkMode] = useState(false); // Botão "ligado/desligado"
   const [linkText, setLinkText] = useState(''); // Texto do link
+  const [outputText, setOutputText] = useState(''); // Estado para armazenar o texto processado
 
   const handleProceed = async () => {
     if (isLinkMode) {
@@ -25,27 +27,26 @@ const SelectionScreen: React.FC<Props> = ({ navigation }) => {
         alert('Por favor, insira um link válido.');
         return;
       }
-  
+
       try {
-        // Exibe um alerta (ou loader) para indicar que o link está sendo processado
         alert('Processando o link, aguarde...');
-  
-        // Processa o link
+        
+        // Processa o link (extração do texto)
         const processedText = await processLink(linkText, outputType, language);
-  
-        // Navega para a tela OutputScreen com o texto processado
-        navigation.navigate('OutputScreen', { 
-          isLinkMode, 
-          linkText, 
-          outputText: processedText, 
-          outputType, 
-          language 
-        });
+        console.log("Texto do link: ", processedText);
+        
+        // Agora chama o serviço de processamento de texto
+        await handleProcessText(processedText, outputType, language, setOutputText, navigation);
+        
       } catch (error) {
         alert('Erro ao processar o link. Tente novamente.');
       }
     } else {
-      navigation.navigate('ProcessScreen', { outputType, language });
+      // Para o caso de texto digitado
+      navigation.navigate('ProcessScreen', {
+        outputType: outputType,
+        language: language,
+      });
     }
   };
 
@@ -79,13 +80,17 @@ const SelectionScreen: React.FC<Props> = ({ navigation }) => {
             style={[styles.radioButton, outputType === 'tdah' ? styles.radioSelected : null]}
             onPress={() => setOutputType('tdah')}
           >
-            <Text style={styles.radioText}>TDAH</Text>
+            <Text style={[styles.radioText, outputType === 'tdah' ? styles.selectedText : styles.unselectedText]}>
+              TDAH
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.radioButton, outputType === 'tea' ? styles.radioSelected : null]}
             onPress={() => setOutputType('tea')}
           >
-            <Text style={styles.radioText}>TEA</Text>
+            <Text style={[styles.radioText, outputType === 'tea' ? styles.selectedText : styles.unselectedText]}>
+              TEA
+            </Text>
           </TouchableOpacity>
         </View>
 
@@ -95,13 +100,17 @@ const SelectionScreen: React.FC<Props> = ({ navigation }) => {
             style={[styles.radioButton, language === 'pt' ? styles.radioSelected : null]}
             onPress={() => setLanguage('pt')}
           >
-            <Text style={styles.radioText}>Português</Text>
+            <Text style={[styles.radioText, language === 'pt' ? styles.selectedText : styles.unselectedText]}>
+              Português
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.radioButton, language === 'en' ? styles.radioSelected : null]}
             onPress={() => setLanguage('en')}
           >
-            <Text style={styles.radioText}>Inglês</Text>
+            <Text style={[styles.radioText, language === 'en' ? styles.selectedText : styles.unselectedText]}>
+              Inglês
+            </Text>
           </TouchableOpacity>
         </View>
 
@@ -110,7 +119,7 @@ const SelectionScreen: React.FC<Props> = ({ navigation }) => {
             style={[styles.radioButton, isLinkMode ? styles.radioSelected : null]}
             onPress={() => setIsLinkMode((prev) => !prev)}
           >
-            <Text style={styles.radioText}>
+            <Text style={[styles.radioText, isLinkMode ? styles.selectedText : styles.unselectedText]}>
               {isLinkMode ? 'Modo Link: Ligado' : 'Modo Link: Desligado'}
             </Text>
           </TouchableOpacity>
@@ -126,6 +135,13 @@ const SelectionScreen: React.FC<Props> = ({ navigation }) => {
         )}
 
         <Button title="Prosseguir" onPress={handleProceed} />
+
+        {/* Exibir o texto processado */}
+        {outputText ? (
+          <View style={styles.outputContainer}>
+            <Text style={styles.outputText}>{outputText}</Text>
+          </View>
+        ) : null}
       </View>
     </View>
   );
@@ -193,7 +209,13 @@ const styles = StyleSheet.create({
   },
   radioText: {
     fontSize: 16,
-    color: '#333',
+    fontWeight: 'bold', // Gordinho, independente da seleção
+  },
+  selectedText: {
+    color: 'white', // Cor do texto selecionado
+  },
+  unselectedText: {
+    color: 'black', // Cor do texto não selecionado
   },
   input: {
     width: '100%',
@@ -204,6 +226,18 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 20,
     backgroundColor: '#fff',
+  },
+  outputContainer: {
+    marginTop: 20,
+    padding: 10,
+    backgroundColor: '#f5f5f5',
+    borderRadius: 5,
+    width: '100%',
+  },
+  outputText: {
+    fontSize: 16,
+    color: '#333',
+    textAlign: 'center',
   },
 });
 
