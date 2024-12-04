@@ -29,15 +29,13 @@ const SelectionScreen: React.FC<Props> = ({ navigation }) => {
       }
 
       try {
-        alert('Processando o link, aguarde...');
-        
         // Processa o link (extração do texto)
         const processedText = await processLink(linkText, outputType, language);
         console.log("Texto do link: ", processedText);
-        
+
         // Agora chama o serviço de processamento de texto
         await handleProcessText(processedText, outputType, language, setOutputText, navigation);
-        
+
       } catch (error) {
         alert('Erro ao processar o link. Tente novamente.');
       }
@@ -116,14 +114,33 @@ const SelectionScreen: React.FC<Props> = ({ navigation }) => {
 
         <View style={{ marginBottom: 20 }}>
           <TouchableOpacity
-            style={[styles.radioButton, isLinkMode ? styles.radioSelected : null]}
+            style={[
+              styles.radioButton,
+              isLinkMode ? styles.radioSelected : null,
+              {
+                flexDirection: 'row', // Mantém o layout horizontal, caso precise adicionar ícones ou outros elementos
+                justifyContent: 'center', // Centraliza o texto horizontalmente
+                alignItems: 'center', // Centraliza o texto verticalmente
+                paddingHorizontal: 10, // Adiciona espaço interno horizontal
+                minWidth: 200, // Garante largura mínima para a caixa
+                height: 50, // Define uma altura consistente para a caixa
+              }
+            ]}
             onPress={() => setIsLinkMode((prev) => !prev)}
           >
-            <Text style={[styles.radioText, isLinkMode ? styles.selectedText : styles.unselectedText]}>
+            <Text
+              style={[
+                styles.radioText,
+                isLinkMode ? styles.selectedText : styles.unselectedText,
+                { textAlign: 'center' } // Garante centralização do texto, caso seja necessário
+              ]}
+            >
               {isLinkMode ? 'Modo Link: Ligado' : 'Modo Link: Desligado'}
             </Text>
           </TouchableOpacity>
         </View>
+
+
 
         {isLinkMode && (
           <TextInput
@@ -134,7 +151,12 @@ const SelectionScreen: React.FC<Props> = ({ navigation }) => {
           />
         )}
 
-        <Button title="Prosseguir" onPress={handleProceed} />
+        <TouchableOpacity
+          style={[styles.radioButton, styles.proceedButton]}
+          onPress={handleProceed}
+        >
+          <Text style={[styles.radioText, styles.proceedButtonText]}>Prosseguir</Text>
+        </TouchableOpacity>
 
         {/* Exibir o texto processado */}
         {outputText ? (
@@ -238,6 +260,21 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#333',
     textAlign: 'center',
+  },
+  proceedButton: {
+    padding: 10,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    backgroundColor: '#3b5998',  // A mesma cor de fundo que os outros botões selecionados
+    width: '40%',
+    alignItems: 'center',
+    marginTop: 20, // Distância do botão para os outros elementos
+  },
+  proceedButtonText: {
+    fontSize: 16,
+    fontWeight: 'bold', // Fonte mais gordinha
+    color: '#fff', // Cor branca
   },
 });
 

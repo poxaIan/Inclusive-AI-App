@@ -16,6 +16,7 @@ export const handleProcessText = async (
   navigation: any
 ) => {
   try {
+    // Verifica se o texto de entrada está vazio
     if (!inputText.trim()) {
       setOutputText("Por favor, insira um texto para processar.");
       return;
@@ -25,6 +26,7 @@ export const handleProcessText = async (
 
     let prompt = '';
 
+    // Cria o prompt com base no tipo de saída
     if (outputType === 'tdah') {
       prompt = `Por favor, em ${getLanguageName(language)}, resuma o seguinte texto em uma lista organizada, destacando os pontos principais em tópicos curtos e fáceis de entender. Cada tópico deve conter uma ideia clara e objetiva. Utilize uma estrutura de tópicos com frases curtas, que ajudem a manter o foco do leitor. \n\n Texto: ${inputText}`;
     } else if (outputType === 'tea') {
@@ -33,12 +35,14 @@ export const handleProcessText = async (
 
     console.log("Prompt: ", prompt);
 
+    // Indica que o processamento foi iniciado
     setOutputText("Processando...");
 
     // Processa o texto usando a função com a IA
     const response = await processWithOllama(prompt, outputType, language);
     console.log("Resposta da API:", response);
 
+    // Verifica se a resposta da API é uma string
     if (typeof response === 'string') {
       setOutputText(response); // Atualiza o estado com a resposta da API
       navigation.navigate('OutputScreen', { outputText: response }); // Navega para a tela de saída
@@ -46,6 +50,7 @@ export const handleProcessText = async (
       console.error("Erro: Resposta não é uma string.");
       setOutputText("Erro ao processar o texto.");
     }
+
   } catch (error) {
     console.error("Erro ao processar o texto:", error);
     setOutputText("Erro ao processar o texto.");

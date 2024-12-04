@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://10.0.2.2:11434/api'; // Certifique-se de usar o IP correto
+const baseURL = 'http://104.198.52.46:11434/api'; // Certifique-se de usar o IP correto
 
 export const processWithOllama = async (
   inputText: string,
@@ -9,7 +9,7 @@ export const processWithOllama = async (
 ): Promise<string> => { // Retorna apenas uma string
   try {
     const response = await axios.post(`${baseURL}/generate`, {
-      model: 'mistral',
+      model: 'llama3.1',
       prompt: `<s>[INST] ${inputText} [/INST]`,
       outputType,
       language,
