@@ -1,5 +1,7 @@
 🇧🇷 [Português](README.pt.md)
 
+![Infra do Projeto](./src/assets/infra.jpg)
+
 ## Table of Contents
 - [NeuroVita: Inclusive AI](#neurovita-inclusive-ai)
   - [Application Summary](#application-summary)
