@@ -1,3 +1,5 @@
+![Infra do Projeto](./src/assets/infra.jpg)
+
 ## Índice
 - [NeuroVita: IA Inclusiva](#neurovita-ia-inclusiva)
   - [Resumo da Aplicação](#resumo-da-aplicação)
